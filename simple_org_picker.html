@@ -219,7 +219,7 @@ body {
       </style>
     </noscript>
     
-    <title>Log in | Storytime</title>
+    <title>Log in | Choose your organisation</title>
   </head>
   
   <body>
@@ -325,7 +325,7 @@ body {
     document.getElementById('main_form').onsubmit = e => {
         e.preventDefault();
         console.log(`Redirecting to authenticate against org: ${document.getElementById('orgSelect').value}`);
-        console.log(`https://${data.tenant_domain}/authorize?response_type=code&client_id=${data.client_id}&redirect_uri=${data.redirect_uri}`);
+        console.log(`https://${data.tenant_domain}/authorize?response_type=code&client_id=${data.client_id}&redirect_uri=${data.redirect_uri}&org_chosen=true`);
         //location.href = '';
     };
 
