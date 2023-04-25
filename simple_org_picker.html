@@ -336,7 +336,7 @@ body {
 
         optEl.innerText = `${org.display_name} (${org.name})`;
         optEl.value = org.id;
-        optEl.dataset.org_name = orgName;
+        optEl.dataset.org_name = org.name;
 
         selectEl.appendChild(optEl);
     });
