@@ -295,7 +295,38 @@ body {
 </main>
 <script id="client-scripts" type="text/javascript">
 !function(){
-    var data = JSON.parse(atob(location.search.replace('?data=','')));
+    const queryStringToObj = (queryString) => {
+        queryString = (queryString) ? queryString : window.location.search;
+        var obj = {};
+        var singles = [];
+        if(queryString){
+            queryString = queryString.replace("?","");
+            var pairs = queryString.split("&");
+            for(i in pairs){
+                var split = pairs[i].split("=");
+                if(split.length === 1){
+                    singles.push(split[0]);
+                }else{
+                    if(decodeURIComponent(split[0]) in obj){
+                        if(!Array.isArray(obj[decodeURIComponent(split[0])])){
+                            var tmp = obj[decodeURIComponent(split[0])];
+                            obj[decodeURIComponent(split[0])] = [tmp];
+                        }
+                        obj[decodeURIComponent(split[0])].push(decodeURIComponent(split[1]));
+                    }else{
+                        obj[decodeURIComponent(split[0])] = decodeURIComponent(split[1]);
+                    }
+                }
+            }
+        }
+        
+        if(singles.length){
+            obj.ValueArray = singles;
+        }
+        return obj;
+    }
+
+    var data = JSON.parse(atob(queryStringToObj().data));
     var orgData = data.org_data;
     console.log(orgData);
     
