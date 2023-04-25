@@ -324,8 +324,9 @@ body {
 
     document.getElementById('main_form').onsubmit = e => {
         e.preventDefault();
-        console.log(`Redirecting to authenticate against org: ${document.getElementById('orgSelect').value}`);
-        console.log(`https://${data.tenant_domain}/authorize?response_type=code&client_id=${data.client_id}&redirect_uri=${data.redirect_uri}&org_chosen=true`);
+        var selectedOrgId = document.getElementById('orgSelect').value;
+        console.log(`Redirecting to authenticate against org: ${selectedOrgId}`);
+        console.log(`https://${data.tenant_domain}/authorize?response_type=code&client_id=${data.client_id}&redirect_uri=${data.redirect_uri}&organization=${selectedOrgId}&org_chosen=true`);
         //location.href = '';
     };
 
