@@ -358,7 +358,7 @@ body {
         e.preventDefault();
         var selectedOrgId = document.getElementById('orgSelect').value;
         var selectedOrgName = document.getElementById('orgSelect').options[document.getElementById('orgSelect').selectedIndex].dataset.org_name;
-        console.log(`URL params passed through: ${data.url_params}`);
+        console.log(`URL params passed through: ${JSON.stringify(data.url_params)}`);
         console.log(`Redirecting to authenticate against org: ${selectedOrgId}`);
         console.log(`https://${data.tenant_domain}/authorize?response_type=code&client_id=${data.client_id}&redirect_uri=${data.redirect_uri.replace('{org_name}', selectedOrgName)}&organization=${selectedOrgId}&org_chosen=true`);
         //location.href = '';
