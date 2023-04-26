@@ -360,7 +360,7 @@ body {
         var selectedOrgName = document.getElementById('orgSelect').options[document.getElementById('orgSelect').selectedIndex].dataset.org_name;
         console.log(`URL params passed through: ${JSON.stringify(data.url_params)}`);
         console.log(`Redirecting to authenticate against org: ${selectedOrgId}`);
-        console.log(`https://${data.tenant_domain}/authorize?response_type=token&audience=${data.url_params.audience}&scope=${data.url_params.scope}&client_id=${data.url_params.client_id}&redirect_uri=${data.url_params.redirect_uri.replace('{org_name}', selectedOrgName)}&organization=${selectedOrgId}&state=${data.url_params.state}&org_chosen=true`);
+        console.log(`https://${data.tenant_domain}/authorize?response_type=token&audience=${encodeURIComponent(data.url_params.audience)}&scope=${encodeURIComponent(data.url_params.scope)}&client_id=${data.url_params.client_id}&redirect_uri=${data.url_params.redirect_uri.replace('{org_name}', selectedOrgName)}&organization=${selectedOrgId}&state=${data.url_params.state}&org_chosen=true`);
         //location.href = '';
     };
 
