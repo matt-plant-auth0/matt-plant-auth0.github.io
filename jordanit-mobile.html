@@ -30,7 +30,7 @@
                 // Initialize the DOM parser
                 var parser = new DOMParser();
 
-                doc = doc.replaceAll('<table>', '<div class="row">');
+                doc = doc.replace(/<table>/g, '<div class="row">');
 
                 // Parse the text
                 var doc = parser.parseFromString(html, "text/html");
