@@ -41,12 +41,12 @@
 
                 for(var i = 0; i < doc.body.getElementsByTagName('img').length; i++){
                     var currentSrc = doc.body.getElementsByTagName('img')[i].src;
-                    doc.body.getElementsByTagName('img')[i].src = `https://${fetchUrl}/${currentSrc}`;
+                    doc.body.getElementsByTagName('img')[i].src = `https://${fetchUrl}/${currentSrc.replace(location.orgin, '')}`;
                 }
 
                 for(var i = 0; i < doc.body.getElementsByTagName('a').length; i++){
                     var currentHref = doc.body.getElementsByTagName('a')[i].href;
-                    doc.body.getElementsByTagName('a')[i].href = `?page=${currentHref}`;
+                    doc.body.getElementsByTagName('a')[i].href = `?page=${currentHref.replace(location.orgin, '')}`;
                 }
                 
                 document.body.innerHTML = doc.body.innerHTML;
