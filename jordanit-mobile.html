@@ -52,7 +52,7 @@
                 }
 
                 for(var i = 0; i < doc.body.getElementsByClassName('row').length; i++){
-                    doc.body.getElementsByClassName('row')[i].outerHTML = doc.body.getElementsByClassName('row')[i].innerHTML
+                    doc.body.getElementsByClassName('row')[i].innerHTML = doc.body.getElementsByClassName('row')[i].innerHTML
                         .replace('<tbody>','')
                             .replace('<tr>','')
                                 .replaceAll('<td>','<div class="col">')
