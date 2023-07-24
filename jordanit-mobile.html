@@ -20,7 +20,7 @@
     <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#712cf9">
     <script>
-        fetch(`https://cors-anywhere.herokuapp.com/${encodeURIComponent(`https://jordanit.com.au/${location.pathname.replace('jordanit-mobile.html','')}`)}`)
+        fetch(`https://cors-anywhere.herokuapp.com/${encodeURIComponent(`jordanit.com.au/${location.pathname.replace('jordanit-mobile.html','')}`)}`)
             .then(function(response) {
                 // When the page is loaded convert it to text
                 return response.text()
