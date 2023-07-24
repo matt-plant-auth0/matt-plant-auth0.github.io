@@ -43,12 +43,14 @@
 
                 for(var i = 0; i < doc.body.getElementsByTagName('img').length; i++){
                     var currentSrc = doc.body.getElementsByTagName('img')[i].src;
+                    fetchUrl = fetchUrl.endsWith('html') ? fetchUrl.replace(/\/[a-z]+\d\.html/, '') : fetchUrl;
                     doc.body.getElementsByTagName('img')[i].src = `https://${fetchUrl}/${currentSrc.replace(location.origin, '')}`;
+                    doc.body.getElementsByTagName('img')[i].width = '';
                 }
 
                 for(var i = 0; i < doc.body.getElementsByTagName('a').length; i++){
                     var currentHref = doc.body.getElementsByTagName('a')[i].href;
-                    doc.body.getElementsByTagName('a')[i].href = `?page=${location.search.replace('?page=','')}${currentHref.replace(location.origin, '')}`;
+                    doc.body.getElementsByTagName('a')[i].href = (`?page=${location.search.replace('?page=','')}${currentHref.replace(location.origin, '')}`).replace(/\/[a-z]+\d\.html/, '');
                 }
 
                 for(var i = 0; i < doc.body.getElementsByClassName('row').length; i++){
