@@ -57,7 +57,7 @@
                             .replace('<tr>','')
                                 .replace(/<td>/g,'<div class="col">')
                                     .replace('</tbody>','')
-                                        .replace(/</td>/g,'</div>')
+                                        .replace(/<\/td>/g,'</div>')
                                             .replace('</tr>','');
                 }
                 
