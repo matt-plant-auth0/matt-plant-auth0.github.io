@@ -50,7 +50,7 @@
                 }
 
                 for(var i = 0; i < doc.body.getElementsByTagName('table').length; i++){
-                    document.getElementsByTagName('table')[i].outerHTML = document.getElementsByTagName('table')[i].outerHTML.replace('<table>','<div class="row">')
+                    doc.body.getElementsByTagName('table')[i].outerHTML = doc.body.getElementsByTagName('table')[i].outerHTML.replace('<table>','<div class="row">')
                         .replace('<tbody>','')
                             .replace('<tr>','')
                                 .replaceAll('<td>','<div class="col">')
