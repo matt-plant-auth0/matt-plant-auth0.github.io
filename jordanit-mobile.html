@@ -46,7 +46,7 @@
 
                 for(var i = 0; i < doc.body.getElementsByTagName('a').length; i++){
                     var currentHref = doc.body.getElementsByTagName('a')[i].href;
-                    doc.body.getElementsByTagName('a')[i].href = `?page=${currentHref.replace(location.origin, '')}`;
+                    doc.body.getElementsByTagName('a')[i].href = `?page=${location.search.replace('?page=','')}${currentHref.replace(location.origin, '')}`;
                 }
                 
                 document.body.innerHTML = doc.body.innerHTML;
