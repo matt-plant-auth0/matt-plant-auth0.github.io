@@ -30,6 +30,8 @@
                 // Initialize the DOM parser
                 var parser = new DOMParser();
 
+                doc = doc.replaceAll('<table>', '<div class="row">');
+
                 // Parse the text
                 var doc = parser.parseFromString(html, "text/html");
 
@@ -49,15 +51,14 @@
                     doc.body.getElementsByTagName('a')[i].href = `?page=${location.search.replace('?page=','')}${currentHref.replace(location.origin, '')}`;
                 }
 
-                for(var i = 0; i < doc.body.getElementsByTagName('table').length; i++){
-                    doc.body.getElementsByTagName('table')[i].outerHTML = doc.body.getElementsByTagName('table')[i].outerHTML.replace('<table>','<div class="row">')
+                for(var i = 0; i < doc.body.getElementsByClassName('row').length; i++){
+                    doc.body.getElementsByClassName('row')[i].outerHTML = doc.body.getElementsByClassName('row')[i].innerHTML
                         .replace('<tbody>','')
                             .replace('<tr>','')
                                 .replaceAll('<td>','<div class="col">')
                                     .replace('</tbody>','')
                                         .replaceAll('</td>','</div>')
-                                            .replace('</tr>','')
-                                                .replace('</table>','</div>');
+                                            .replace('</tr>','');
                 }
                 
                 document.getElementById('main-container').innerHTML = doc.body.innerHTML;
