@@ -21,9 +21,6 @@
     <meta name="theme-color" content="#712cf9">
     <script>
         var fetchUrl = location.search ? `jordanit.com.au/${location.search.replace('?page=','')}` : 'jordanit.com.au';
-        var baseEl = document.createElement('base');
-        baseEl.href = fetchUrl;
-        document.head.appendChild(baseEl);
         fetch(`https://cors-anywhere.herokuapp.com/${fetchUrl}`)
             .then(function(response) {
                 // When the page is loaded convert it to text
@@ -42,6 +39,16 @@
 
                 console.log(doc);
 
+                for(var i = 0; i < doc.body.getElementsByTagName('img').length; i++){
+                    var currentSrc = doc.body.getElementsByTagName('img')[i].src;
+                    doc.body.getElementsByTagName('img')[i].src = `${fetchUrl}/${currentSrc}`;
+                }
+
+                for(var i = 0; i < doc.body.getElementsByTagName('a').length; i++){
+                    var currentHref = doc.body.getElementsByTagName('a')[i].href;
+                    doc.body.getElementsByTagName('a')[i].href = `${fetchUrl}/${currentHref}`;
+                }
+                
                 document.body.innerHTML = doc.body.innerHTML;
             })
     </script>
