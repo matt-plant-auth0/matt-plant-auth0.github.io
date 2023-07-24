@@ -48,6 +48,17 @@
                     var currentHref = doc.body.getElementsByTagName('a')[i].href;
                     doc.body.getElementsByTagName('a')[i].href = `?page=${location.search.replace('?page=','')}${currentHref.replace(location.origin, '')}`;
                 }
+
+                for(var i = 0; i < doc.body.getElementsByTagName('table').length; i++){
+                    document.getElementsByTagName('table')[i].outerHTML = document.getElementsByTagName('table')[i].outerHTML.replace('<table>','<div class="row">')
+                        .replace('<tbody>','')
+                            .replace('<tr>','')
+                                .replaceAll('<td>','<div class="col">')
+                                    .replace('</tbody>','')
+                                        .replaceAll('</td>','</div>')
+                                            .replace('</tr>','')
+                                                .replace('</table>','</div>');
+                }
                 
                 document.getElementById('main-container').innerHTML = doc.body.innerHTML;
             })
