@@ -55,9 +55,9 @@
                     doc.body.getElementsByClassName('row')[i].innerHTML = doc.body.getElementsByClassName('row')[i].innerHTML
                         .replace('<tbody>','')
                             .replace('<tr>','')
-                                .replaceAll('<td>','<div class="col">')
+                                .replace(/<td>/g,'<div class="col">')
                                     .replace('</tbody>','')
-                                        .replaceAll('</td>','</div>')
+                                        .replace(/</td>/g,'</div>')
                                             .replace('</tr>','');
                 }
                 
