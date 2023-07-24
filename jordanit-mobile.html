@@ -21,7 +21,7 @@
     <meta name="theme-color" content="#712cf9">
     <script>
         var fetchUrl = location.search ? `jordanit.com.au/${location.search.replace('?page=','')}` : 'jordanit.com.au';
-        document.head.appendChild(new HTMLBaseElement(`<base href="${fetchUrl}">`));
+        document.head.appendChild(document.createElement('base').href = fetchUrl);
         fetch(`https://cors-anywhere.herokuapp.com/${fetchUrl}`)
             .then(function(response) {
                 // When the page is loaded convert it to text
