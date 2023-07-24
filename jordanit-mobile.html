@@ -49,8 +49,11 @@
                     doc.body.getElementsByTagName('a')[i].href = `?page=${location.search.replace('?page=','')}${currentHref.replace(location.origin, '')}`;
                 }
                 
-                document.body.innerHTML = doc.body.innerHTML;
+                document.getElementById('main-container').innerHTML = doc.body.innerHTML;
             })
     </script>
   </head>
+  <body>
+    <div id="main-container" class="container"></div>
+  </body>
   </html>
