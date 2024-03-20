@@ -144,21 +144,6 @@
           <h4>Client ID (passwordless):</h4>
           <input class="form-control" id="config-client-id-pwl" value="" />
 
-          <h4>User email:</h4>
-          <input
-            class="form-control update-user-email"
-            id="config-user-email"
-            type="email"
-            value=""
-          />
-
-          <h4>User password:</h4>
-          <input
-            class="form-control update-user-password"
-            id="config-user-password"
-            value=""
-          />
-
           <h4>Organization ID</h4>
           <p>
             This is only applicable when logging in using the Universal Login
@@ -198,6 +183,7 @@
             value="Update"
           />
         </div>
+      
 
         <hr />
 
@@ -207,6 +193,14 @@
 
         <div>
           <h4>Login with username and password:</h4>
+          <p>
+            <input
+              class="form-control"
+              id="login-db-realm"
+              value=""
+              placeholder="Realm name"
+            />
+          </p>
           <p>
             <input
               class="form-control login-username update-user-email"
@@ -458,6 +452,7 @@
         </div>
       </div>
     </div>
+    
 
     <script type="text/javascript">
       var htmlConsole = new HTMLConsole({
@@ -615,7 +610,8 @@
         webAuth.login(
           {
             username: $('.login-username').val(),
-            password: $('.login-password').val()
+            password: $('.login-password').val(),
+            realm: $('#login-db-realm').val()
           },
           htmlConsole.dumpCallback.bind(htmlConsole)
         );
