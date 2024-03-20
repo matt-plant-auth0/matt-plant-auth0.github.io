@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/latest/js.cookie.min.js"></script>
     <script src="https://cdn.auth0.com/js/auth0/9.18/auth0.min.js"></script>
-    
+
     <style>
       .row {
         margin: 10px 0;
@@ -129,6 +129,79 @@
         <h1>Auth0.JS playground</h1>
       </div>
       <div class="col-xs-6">
+
+        <h2>Config</h2>
+
+        <hr />
+
+        <div>
+          <h4>Domain:</h4>
+          <input class="form-control" id="config-domain" value="" />
+
+          <h4>Client ID:</h4>
+          <input class="form-control" id="config-client-id" value="" />
+
+          <h4>Client ID (passwordless):</h4>
+          <input class="form-control" id="config-client-id-pwl" value="" />
+
+          <h4>User email:</h4>
+          <input
+            class="form-control update-user-email"
+            id="config-user-email"
+            type="email"
+            value=""
+          />
+
+          <h4>User password:</h4>
+          <input
+            class="form-control update-user-password"
+            id="config-user-password"
+            value=""
+          />
+
+          <h4>Organization ID</h4>
+          <p>
+            This is only applicable when logging in using the Universal Login
+            Page.
+          </p>
+          <div style="display: flex">
+            <input
+              type="text"
+              class="form-control update-organization"
+              id="config-organization"
+              style="margin-right: 10px;"
+            />
+            <input
+              type="button"
+              class="btn btn-default"
+              id="clear-org"
+              value="Clear"
+            />
+          </div>
+
+          <h4>User Invitation</h4>
+          <p>Paste in an invitation URL and be logged in</p>
+          <div>
+            <input
+              type="button"
+              value="Test User Invitation"
+              class="btn btn-default"
+              id="invoke-invite"
+            />
+          </div>
+
+          <br />
+          <input
+            type="button"
+            class="btn btn-default"
+            id="config-update"
+            value="Update"
+          />
+        </div>
+      </div>
+
+        <hr />
+
         <h2>Actions</h2>
 
         <hr />
@@ -372,73 +445,7 @@
 
         <hr />
 
-        <h2>Config</h2>
-
-        <div>
-          <h4>Domain:</h4>
-          <input class="form-control" id="config-domain" value="" />
-
-          <h4>Client ID:</h4>
-          <input class="form-control" id="config-client-id" value="" />
-
-          <h4>Client ID (passwordless):</h4>
-          <input class="form-control" id="config-client-id-pwl" value="" />
-
-          <h4>User email:</h4>
-          <input
-            class="form-control update-user-email"
-            id="config-user-email"
-            type="email"
-            value=""
-          />
-
-          <h4>User password:</h4>
-          <input
-            class="form-control update-user-password"
-            id="config-user-password"
-            value=""
-          />
-
-          <h4>Organization ID</h4>
-          <p>
-            This is only applicable when logging in using the Universal Login
-            Page.
-          </p>
-          <div style="display: flex">
-            <input
-              type="text"
-              class="form-control update-organization"
-              id="config-organization"
-              style="margin-right: 10px;"
-            />
-            <input
-              type="button"
-              class="btn btn-default"
-              id="clear-org"
-              value="Clear"
-            />
-          </div>
-
-          <h4>User Invitation</h4>
-          <p>Paste in an invitation URL and be logged in</p>
-          <div>
-            <input
-              type="button"
-              value="Test User Invitation"
-              class="btn btn-default"
-              id="invoke-invite"
-            />
-          </div>
-
-          <br />
-          <input
-            type="button"
-            class="btn btn-default"
-            id="config-update"
-            value="Update"
-          />
-        </div>
-      </div>
+        
 
       <div class="col-xs-6">
         <h4>Console:</h4>
