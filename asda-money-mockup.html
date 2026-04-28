@@ -447,9 +447,11 @@
           return console.log(err);
         }
 
-        webAuth.client.userInfo(authResult.accessToken, function(err, user) {
-          document.getElementById('login-btn').innerText = user.email;
-        });
+        if(authResult.accessToken){
+          webAuth.client.userInfo(authResult.accessToken, function(err, user) {
+            document.getElementById('login-btn').innerText = user.email;
+          });
+        }
       });
 
       const login = () => {
