@@ -447,7 +447,7 @@
           return console.log(err);
         }
 
-        if(authResult.accessToken){
+        if(authResult){
           webAuth.client.userInfo(authResult.accessToken, function(err, user) {
             document.getElementById('login-btn').innerText = user.email;
           });
