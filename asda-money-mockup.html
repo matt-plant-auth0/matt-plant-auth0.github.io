@@ -391,7 +391,7 @@
             <div class="action-buttons">
                 <button class="btn">+ Add another currency</button>
                 <button class="btn">+ Asda Travel Money Card</button>
-                <a href="#" class="rewards-link">🏷 Enter ASDA Rewards Number</a>
+                <button id="login-btn" class="btn rewards-link" onclick="login()">Sign in with you ASDA account</button>
             </div>
 
             <div class="delivery-section">
@@ -435,5 +435,26 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.auth0.com/js/auth0/9.18/auth0.min.js"></script>
+    <script>
+      var webAuth = new auth0.WebAuth({
+        domain:       'travelex-poc.oktademo.cloud',
+        clientID:     'msTNL7HN4PfjmSZR0Af4x6bwvCjM61YV'
+      });
+
+      webAuth.parseHash(function(err, authResult) {
+        if (err) {
+          return console.log(err);
+        }
+
+        webAuth.client.userInfo(authResult.accessToken, function(err, user) {
+          document.getElementById('login-btn').innerText = user.email;
+        });
+      });
+
+      const login = () => {
+        webAuth.authorize({connection: 'fake-asda', scope: 'openid profile email offline_access', redirectUri: 'https://matt-plant-auth0.github.io/asda-money-mockup.html'});
+      }
+    </script>
 </body>
 </html>
