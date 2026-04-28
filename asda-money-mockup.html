@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASDA Money - Travel Money Order</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #78be20;
+        }
+
+        .progress-steps {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #78be20;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-weight: bold;
+        }
+
+        .step.inactive .step-circle {
+            background-color: #ccc;
+        }
+
+        .basket-timer {
+            text-align: right;
+        }
+
+        .basket-timer span {
+            display: block;
+            font-size: 14px;
+            color: #78be20;
+        }
+
+        .basket-timer strong {
+            font-size: 18px;
+        }
+
+        .order-total-bar {
+            background-color: #000;
+            color: white;
+            padding: 15px 40px;
+            text-align: right;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .promo-banner {
+            background: linear-gradient(90deg, white 60%, transparent 60%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="80"><rect fill="%23f0f0f0" width="400" height="80"/></svg>');
+            background-size: cover;
+            border: 3px solid #78be20;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .promo-icon {
+            font-size: 48px;
+            color: #78be20;
+        }
+
+        .promo-text h3 {
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .main-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            font-weight: bold;
+        }
+
+        .currency-item {
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .currency-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .card-icon {
+            color: #0077be;
+            font-size: 24px;
+        }
+
+        .currency-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: 35px;
+        }
+
+        .currency-name {
+            font-weight: bold;
+        }
+
+        .currency-inputs {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .currency-input {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .currency-input input {
+            padding: 10px;
+            border: 2px solid #000;
+            width: 120px;
+            text-align: right;
+            font-size: 16px;
+        }
+
+        .exchange-rate {
+            margin-left: 35px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .remove-btn {
+            margin-left: 35px;
+            margin-top: 10px;
+            color: #000;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .add-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #078a00;
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 35px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: 2px solid #078a00;
+            background-color: white;
+            color: #078a00;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .rewards-link {
+            margin-left: auto;
+            color: #078a00;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .delivery-section {
+            margin-top: 40px;
+        }
+
+        .delivery-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .delivery-tabs {
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 16px;
+        }
+
+        .tab.active {
+            border-bottom: 3px solid #078a00;
+            font-weight: bold;
+        }
+
+        .info-notices {
+            margin: 20px 0;
+        }
+
+        .notice {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .warning-icon {
+            color: #078a00;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .location-search {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .location-search input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #000;
+            font-size: 16px;
+        }
+
+        .find-store-btn {
+            padding: 12px 30px;
+            background-color: #078a00;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .use-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #078a00;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .delivery-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .delivery-link a {
+            color: #078a00;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ASDA money</div>
+        <div class="progress-steps">
+            <div class="step">
+                <div class="step-circle">1</div>
+                <div>My Order</div>
+            </div>
+            <div class="step inactive">
+                <div class="step-circle">2</div>
+                <div>Payment</div>
+            </div>
+            <div class="step inactive">
+                <div class="step-circle">3</div>
+                <div>Confirmation</div>
+            </div>
+        </div>
+        <div class="basket-timer">
+            <span>Basket available for</span>
+            <strong>⏱ 17:44 mins</strong>
+        </div>
+    </header>
+
+    <div class="order-total-bar">
+        Order sub total: £ 500.00 ▼
+    </div>
+
+    <div class="container">
+        <div class="promo-banner">
+            <div class="promo-icon">💷</div>
+            <div class="promo-text">
+                <h3>Click and Collect</h3>
+                <p><strong>Order online and pick up whilst doing your next shop.</strong></p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="section-title">
+                <span>Currency & products</span>
+                <span>Currency amount</span>
+                <span>Cost</span>
+            </div>
+
+            <div class="currency-item">
+                <div class="currency-header">
+                    <span class="card-icon">💳</span>
+                    <strong>Purchase Travel Money Card</strong>
+                </div>
+
+                <div class="currency-details">
+                    <div class="currency-name">Turkish New Lira</div>
+
+                    <div class="currency-inputs">
+                        <div class="currency-input">
+                            <input type="text" value="27557.30" readonly>
+                            <span>TRY</span>
+                        </div>
+                        <span>=</span>
+                        <div class="currency-input">
+                            <input type="text" value="500.00" readonly>
+                            <span>GBP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="exchange-rate">
+                    55.1146 TRY = 1 GBP
+                </div>
+
+                <a href="#" class="remove-btn">✕ Remove</a>
+
+                <a href="#" class="add-btn">+ Add an additional card</a>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn">+ Add another currency</button>
+                <button class="btn">+ Asda Travel Money Card</button>
+                <a href="#" class="rewards-link">🏷 Enter ASDA Rewards Number</a>
+            </div>
+
+            <div class="delivery-section">
+                <h2>How would you like to get your currency?</h2>
+
+                <div class="delivery-tabs">
+                    <button class="tab">🚚 Home Delivery</button>
+                    <button class="tab active">🏪 Click & Collect</button>
+                </div>
+
+                <div class="info-notices">
+                    <div class="notice">
+                        <div class="warning-icon">⚠</div>
+                        <div>If you're collecting your order from an Asda Travel Money Bureau then collection will be free.</div>
+                    </div>
+                    <div class="notice">
+                        <div class="warning-icon">⚠</div>
+                        <div>If you're collecting your order from an Asda store that doesn't have a Travel Money Bureau then there will be £4.99 delivery fee for all orders under £400.</div>
+                    </div>
+                    <div class="notice">
+                        <div class="warning-icon">⚠</div>
+                        <div>You can collect your order from 3pm on your chosen collection date.</div>
+                    </div>
+                    <div class="notice">
+                        <div class="warning-icon">⚠</div>
+                        <div>Please note if Buy Back Promise has been selected, it can only be redeemed at an Asda Travel Money Bureau - click <a href="#">here</a> for Buy Back Promise T&Cs.</div>
+                    </div>
+                </div>
+
+                <div class="location-search">
+                    <label><strong>Enter Postcode or City</strong></label>
+                    <input type="text" placeholder="Enter postcode or city">
+                    <button class="find-store-btn">🔍 Find a store</button>
+                </div>
+
+                <a href="#" class="use-location">📍 Use my current location</a>
+
+                <div class="delivery-link">
+                    Can't find a store? <a href="#">Get it delivered to your home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
