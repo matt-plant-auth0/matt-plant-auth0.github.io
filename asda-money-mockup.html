@@ -448,7 +448,7 @@
         }
 
         if(authResult){
-          webAuth.client.userInfo(authResult.accessToken, function(err, user) {
+          webAuth.client.userInfo(authResult.idToken, function(err, user) {
             document.getElementById('login-btn').innerText = user.username;
           });
         }
