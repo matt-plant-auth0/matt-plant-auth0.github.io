@@ -455,7 +455,7 @@
       });
 
       const login = () => {
-        webAuth.authorize({connection: 'fake-asda', scope: 'openid profile email offline_access', redirectUri: 'https://matt-plant-auth0.github.io/asda-money-mockup.html'});
+        webAuth.authorize({connection: 'fake-asda', scope: 'openid profile email offline_access', responseType: 'code', redirectUri: 'https://matt-plant-auth0.github.io/asda-money-mockup.html'});
       }
     </script>
 </body>
