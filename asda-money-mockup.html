@@ -391,7 +391,7 @@
             <div class="action-buttons">
                 <button class="btn">+ Add another currency</button>
                 <button class="btn">+ Asda Travel Money Card</button>
-                <button id="login-btn" class="btn rewards-link" onclick="login()">Sign in with you ASDA account</button>
+                <button id="login-btn" class="btn rewards-link" onclick="login()">Sign in with your ASDA account</button>
             </div>
 
             <div class="delivery-section">
@@ -448,8 +448,9 @@
         }
 
         if(authResult){
-          webAuth.client.userInfo(authResult.accessToken, function(err, user) {
+          webAuth.client.userInfo(authResult.idToken, function(err, user) {
             document.getElementById('login-btn').innerText = user.username;
+            document.getElementById('login-btn').onclick = logout();
             console.log(user);
           });
         }
@@ -457,6 +458,12 @@
 
       const login = () => {
         webAuth.authorize({connection: 'fake-asda', scope: 'openid profile email offline_access', responseType: 'token', redirectUri: 'https://matt-plant-auth0.github.io/asda-money-mockup.html'});
+      }
+
+      const logout = () => {
+        webAuth.logout({federated: true});
+        document.getElementById('login-btn').innerText = "Sign in with your ASDA account";
+        document.getElementById('login-btn').onclick = login();
       }
     </script>
 </body>
