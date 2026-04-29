@@ -468,7 +468,7 @@
       }
 
       const logout = () => {
-        webAuth.logout({federated: true});
+        webAuth.logout({federated: true, returnTo: 'https://matt-plant-auth0.github.io/asda-money-mockup.html'});
         document.getElementById('login-btn').innerText = "Sign in with your ASDA account";
       }
     </script>
