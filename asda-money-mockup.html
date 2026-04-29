@@ -449,7 +449,7 @@
 
         if(authResult){
           webAuth.client.userInfo(authResult.accessToken, function(err, user) {
-            //document.getElementById('login-btn').innerText = user.username;
+            document.getElementById('login-btn').innerText = user.username;
             console.log(user);
           });
         }
