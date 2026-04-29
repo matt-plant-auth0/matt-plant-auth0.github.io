@@ -448,15 +448,14 @@
         }
 
         if(authResult){
-            console.log(authResult.idToken);
-          /*webAuth.client.userInfo(authResult.idToken, function(err, user) {
+          webAuth.client.userInfo(authResult.accessToken, function(err, user) {
             document.getElementById('login-btn').innerText = user.username;
-          });*/
+          });
         }
       });
 
       const login = () => {
-        webAuth.authorize({connection: 'fake-asda', scope: 'openid profile email offline_access', responseType: 'id_token', redirectUri: 'https://matt-plant-auth0.github.io/asda-money-mockup.html'});
+        webAuth.authorize({connection: 'fake-asda', scope: 'openid profile email offline_access', responseType: 'token', redirectUri: 'https://matt-plant-auth0.github.io/asda-money-mockup.html'});
       }
     </script>
 </body>
